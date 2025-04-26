@@ -27,6 +27,7 @@ export const WalletConnect: React.FC = () => {
     const [walletName, setWalletName] = useState<string | null>(null);
     const [walletState, setWalletState] = useState<DAppConnectorWalletState | null>(null);
     const [serviceUris, setServiceUris] = useState<ServiceUriConfig | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [walletApi, setWalletApi] = useState<DAppConnectorWalletAPI | null>(null); // Store the API object
 
     const targetWalletName = 'mnLace'; // Hardcode for this test
@@ -68,7 +69,7 @@ export const WalletConnect: React.FC = () => {
             console.log("[4] connector.enable() promise resolved successfully.");
             setWalletApi(enabledApi); // Store the API object
             // use walletApi to fetch state and URIs
-            
+
             setWalletName(connector.name);
 
             // Fetch state and URIs *after* successful enable
@@ -172,9 +173,9 @@ export const WalletConnect: React.FC = () => {
                             <InfoItem label="Proof Server" value={serviceUris.proverServerUri} />
                         </div>
                     </details>
-                     <details style={{ marginTop: '10px', fontSize: '0.9em' }}>
+                    <details style={{ marginTop: '10px', fontSize: '0.9em' }}>
                         <summary>Legacy Keys (Hex)</summary>
-                         <div style={{ paddingLeft: '15px', borderLeft: '1px solid #444' }}>
+                        <div style={{ paddingLeft: '15px', borderLeft: '1px solid #444' }}>
                             <InfoItem label="Address (Legacy)" value={walletState.addressLegacy} />
                             <InfoItem label="Coin PK (Legacy)" value={walletState.coinPublicKeyLegacy} />
                             <InfoItem label="Encryption PK (Legacy)" value={walletState.encryptionPublicKeyLegacy} />
@@ -190,7 +191,7 @@ export const WalletConnect: React.FC = () => {
             ) : (
                 // Show Connect button only if not loading and not showing the info message
                 !isLoading && !infoMessage && (
-                     <div>
+                    <div>
                         <p style={{ color: '#facc15' }}>⚪ Status: Disconnected</p>
                         <button
                             onClick={handleConnect}
@@ -199,19 +200,19 @@ export const WalletConnect: React.FC = () => {
                         >
                             Connect Wallet ({targetWalletName})
                         </button>
-                     </div>
+                    </div>
                 )
             )}
-             {/* Show connect button even with info message, as user needs to click again */}
-             {!isLoading && infoMessage && (
-                 <button
-                     onClick={handleConnect}
-                     disabled={isLoading}
-                     style={{ marginTop: '10px', padding: '8px 15px', backgroundColor: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
-                 >
-                     Connect Wallet ({targetWalletName})
-                 </button>
-             )}
+            {/* Show connect button even with info message, as user needs to click again */}
+            {!isLoading && infoMessage && (
+                <button
+                    onClick={handleConnect}
+                    disabled={isLoading}
+                    style={{ marginTop: '10px', padding: '8px 15px', backgroundColor: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                >
+                    Connect Wallet ({targetWalletName})
+                </button>
+            )}
         </div>
     );
 };
